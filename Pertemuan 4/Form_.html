@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="alert('Halaman berhasil dimuat!');">
+    <div class="container" onmouseover="changeBackground('#e6e6e6')" onmouseout="changeBackground('#f2f2f2')">
+        <h2>Form Validation</h2>
+    
+        <form id="myForm" onsubmit="return validateForm()">
+          <label for="name">Name:</label>
+          <input type="text" id="name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
+          <label for="location">Country:</label>
+          <select id="location" required>
+            <option value="">-- Pilih --</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Philiphine">Philiphine</option>
+            <option value="Usa">Usa</option>
+            <option value="England">England</option>
+            <option value="France">France</option>
+          </select>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    
+      <script>
+        function validateForm() {
+          var name = document.getElementById('name').value;
+          var email = document.getElementById('email').value;
+          var location = document.getElementById('location').value;
+    
+          if (name === '' || email === '' || location === '') {
+            alert('Please fill in all fields');
+            return false;
+          }
+    
+          if (!validateEmail(email)) {
+            alert('Please enter a valid email address');
+            return false;
+          }
+          var location = prompt('Please enter your city or country:');
+          if (location === '' || location === null) {
+            alert('Please enter your city or country');
+            return false;
+          }
+    
+          var confirmation = confirm('Are you sure you want to submit the form?');
+          if (confirmation) {
+            alert('Form submitted successfully');
+            return true;
+          } else {
+            alert('Form submission canceled');
+            return false;
+          }
+        }
+    
+        function validateEmail(email) {
+          var re = /\S+@\S+\.\S+/;
+          return re.test(email);
+        }
+
+        function changeBackground(color) {
+        document.querySelector('.container').style.backgroundColor = color;
+        }
+      </script>
+</body>
+</html>
